@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import logo from '../assets/image.png';
 
 const About = () => {
   return (
@@ -107,7 +108,7 @@ const About = () => {
               >
                 <div className="aspect-w-5 aspect-h-6 w-full">
                   <img 
-                    src="src/assets/image.png" 
+                    src={logo} 
                     alt="Govind Trievdi"
                     className="w-full h-full object-cover"
                   />
