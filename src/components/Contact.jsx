@@ -24,7 +24,7 @@ const Contact = () => {
     
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/contact', 
+        'https://portfolio-backend-2-ug80.onrender.com/api/contact', 
         formData,
         {
           headers: {
