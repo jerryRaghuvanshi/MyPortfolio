@@ -47,8 +47,33 @@ const Education = () => {
       >
         <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white text-center">Education</h2>
         
-        {/* Navigation Buttons */}
-        <div className="flex justify-center items-center mb-12 relative">
+        {/* Navigation Buttons - Mobile */}
+        <div className="md:hidden flex flex-col space-y-4 mb-8">
+          {Object.entries({
+            college: 'College',
+            higherSecondary: 'Higher Secondary',
+            highSchool: 'High School'
+          }).map(([key, label]) => (
+            <motion.button
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`w-full py-3 rounded-lg ${
+                activeTab === key 
+                  ? key === 'college' ? 'bg-indigo-500 text-white' 
+                    : key === 'higherSecondary' ? 'bg-blue-500 text-white' 
+                    : 'bg-teal-500 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
+              }`}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {label}
+            </motion.button>
+          ))}
+        </div>
+        
+        {/* Navigation Buttons - Desktop */}
+        <div className="hidden md:flex justify-center items-center mb-12 relative">
           <motion.button
             onClick={() => setActiveTab('highSchool')}
             className={`absolute left-0 px-4 py-2 rounded-lg ${activeTab === 'highSchool' ? 'bg-teal-500 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`}
@@ -97,7 +122,7 @@ const Education = () => {
             transition={{ duration: 0.3 }}
             className={`border-l-4 ${educationData[activeTab].borderColor} ${educationData[activeTab].color} p-6 rounded-lg shadow-lg`}
           >
-            <div className="flex justify-between items-start">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
               <div>
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white">{educationData[activeTab].degree}</h3>
                 <p className="text-indigo-600 dark:text-indigo-400 font-medium mt-1">
@@ -105,7 +130,11 @@ const Education = () => {
                 </p>
                 <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{educationData[activeTab].duration}</p>
               </div>
-              <span className="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm font-semibold text-indigo-600 dark:text-indigo-300 shadow">
+              <span className={`px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm font-semibold ${
+                activeTab === 'college' ? 'text-indigo-600 dark:text-indigo-300' :
+                activeTab === 'higherSecondary' ? 'text-blue-600 dark:text-blue-300' :
+                'text-teal-600 dark:text-teal-300'
+              } shadow`}>
                 {educationData[activeTab].score}
               </span>
             </div>
@@ -117,7 +146,7 @@ const Education = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <div className="flex space-x-2">
+              <div className="flex flex-wrap gap-2">
                 {activeTab === 'college' && (
                   <>
                     <span className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs font-medium">

@@ -12,7 +12,7 @@ const Skills = () => {
     },
     { 
       category: "Backend", 
-      items: ["Node.js", "Express", "MongoDB",], 
+      items: ["Node.js", "Express", "MongoDB"], 
       icon: "⚙️"
     },
     { 
@@ -22,7 +22,7 @@ const Skills = () => {
     },
     { 
       category: "Tools", 
-      items: ["Git", "VS Code", "Figma", "Postman", ], 
+      items: ["Git", "VS Code", "Figma", "Postman"], 
       icon: "🛠️"
     }
   ];
@@ -41,12 +41,12 @@ const Skills = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0,
-      x: -50,
+      y: 50,
       scale: 0.95
     },
     show: (i) => ({
       opacity: 1,
-      x: 0,
+      y: 0,
       scale: 1,
       transition: {
         type: "spring",
@@ -93,7 +93,7 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <div className="relative h-[400px] flex items-center justify-center">
+        <div className="relative min-h-[400px] flex items-center justify-center">
           {!isExploded && (
             <motion.div
               variants={centerButtonVariants}
@@ -122,21 +122,24 @@ const Skills = () => {
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
-                className="flex overflow-x-visible px-4"
+                className="w-full"
               >
-                <div className="flex space-x-8 px-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
                   {skills.map((skillGroup, index) => (
                     <motion.div
                       key={index}
                       custom={index}
                       variants={cardVariants}
                       whileHover="hover"
-                      className="w-72 h-96 flex-shrink-0 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+                      className="w-full h-96 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
                     >
                       <div className="h-full p-6 flex flex-col">
-                        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
-                          {skillGroup.category}
-                        </h3>
+                        <div className="flex items-center mb-4">
+                          <span className="text-2xl mr-3">{skillGroup.icon}</span>
+                          <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+                            {skillGroup.category}
+                          </h3>
+                        </div>
                         <ul className="space-y-2 flex-grow">
                           {skillGroup.items.map((skill, skillIndex) => (
                             <motion.li 
@@ -157,6 +160,14 @@ const Skills = () => {
                       </div>
                     </motion.div>
                   ))}
+                </div>
+                <div className="flex justify-center mt-8">
+                  <button
+                    onClick={() => setIsExploded(false)}
+                    className="px-6 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                  >
+                    Back to Center
+                  </button>
                 </div>
               </motion.div>
             )}

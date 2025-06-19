@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navItems = [
     { name: 'About', path: '/' },
     { name: 'Experience', path: '/experience' },
@@ -13,10 +16,14 @@ const Header = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
       <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-around">
+        <div className="flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -29,10 +36,10 @@ const Header = () => {
               alt="Logo" 
               className="h-15 w-15"
             /> */}
-
             Govind Trivedi
           </motion.div>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <Link
@@ -44,7 +51,46 @@ const Header = () => {
               </Link>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <FiX className="h-6 w-6" />
+            ) : (
+              <FiMenu className="h-6 w-6" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="flex flex-col space-y-4 pt-4 pb-6">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 px-4 py-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   );
