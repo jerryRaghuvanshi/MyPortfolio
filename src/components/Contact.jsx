@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,24 +23,31 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await axios.post(
-        'https://portfolio-backend-2-ug80.onrender.com/api/contact', 
-        formData,
+      // Replace these with your actual EmailJS credentials
+      const serviceID = 'service_win712t';
+      const templateID = 'template_3excrpb';
+      const publicKey = 'm6DXeoEh8tP7EC-3M';
+      
+      const response = await emailjs.send(
+        serviceID,
+        templateID,
+        
         {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message
+        },
+        publicKey
       );
       
-      if (response.data.success) {
+      if (response.status === 200) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
       } else {
         setSubmitStatus('error');
       }
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error('Email sending error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
