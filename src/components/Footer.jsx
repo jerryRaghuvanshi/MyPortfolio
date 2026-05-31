@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaWhatsapp, FaCode } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaWhatsapp, FaCode,FaGoogle } from 'react-icons/fa';
 import { SiLeetcode, SiCodeforces, SiCodechef } from 'react-icons/si';
 
 const Footer = () => {
@@ -7,39 +7,41 @@ const Footer = () => {
     {
       name: 'GitHub',
       icon: <FaGithub className="text-xl" />,
-      url: 'https://github.com/dryeyezzzz17',
+      url: 'https://github.com/jerryRaghuvanshi',
       color: 'hover:text-gray-700 dark:hover:text-gray-300'
     },
     {
       name: 'LinkedIn',
       icon: <FaLinkedin className="text-xl" />,
-      url: 'https://linkedin.com/in/govind-trivedi-1b61aa293',
+      url: 'https://www.linkedin.com/in/jay-singh-b7b44830b/',
       color: 'hover:text-blue-600'
     },
     {
       name: 'WhatsApp',
       icon: <FaWhatsapp className="text-xl" />,
-      url: 'https://wa.me/6355373174',
+      url: 'https://wa.me/7505127721',
       color: 'hover:text-green-500'
     },
     {
       name: 'LeetCode',
       icon: <SiLeetcode className="text-xl" />,
-      url: 'https://leetcode.com/GOVIND_17',
+      url: 'https://leetcode.com/u/JayRaghuvanshi/',
       color: 'hover:text-yellow-500'
     },
-    {
-      name: 'Codeforces',
-      icon: <SiCodeforces className="text-xl" />,
-      url: 'https://codeforces.com/profile/Govind_Trivedi',
-      color: 'hover:text-red-500'
-    },
+    
     {
       name: 'CodeChef',
       icon: <SiCodechef className="text-xl" />,
-      url: 'https://www.codechef.com/users/govindtrived17',
+      url: 'https://www.codechef.com/users/jayraghuvansh1',
       color: 'hover:text-orange-500'
+    },
+     {
+      name: 'Gmail',
+      icon: <FaGoogle className="text-xl" />,
+      url: 'https://mailto:jay10125r@gmail.com',
+      color: 'hover:text-red-500'
     }
+   
   ];
 
   const container = {

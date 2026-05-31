@@ -5,12 +5,12 @@ const Achievements = () => {
   const constraintsRef = useRef(null);
 
   const achievements = [
-    "Solved more than 500 problems on platforms such as Codeforces, LeetCode, CodeChef, and GFG",
+    "Solved more than 400 problems on platforms such as LeetCode and GFG",
     "Consistent participant in contests and coding challenges",
-    "2 star at CodeChef with max rating 1421 and Codeforces max rating 925",
-    "Secured 10 CPI in all three semesters",
     "Good understanding of algorithms such as sorting, searching, recursion, tree, linked list, stack and queue",
-    "Secured a global rank of 2533 in a rated contest on CodeChef"
+    "Proficient in Java programming language",
+    "Strong problem-solving skills and ability to optimize solutions",
+    "Runner up in college tech quiz competition 2023",
   ];
 
   // Background circle data
@@ -114,21 +114,12 @@ const Achievements = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <div className="p-4 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
-                <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-300">500+</div>
+                <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-300">400+</div>
                 <div className="text-gray-600 dark:text-gray-300">Problems Solved</div>
               </div>
-              <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-300">10.0</div>
-                <div className="text-gray-600 dark:text-gray-300">CPI Score</div>
-              </div>
-              <div className="p-4 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                <div className="text-3xl font-bold text-purple-600 dark:text-purple-300">1421</div>
-                <div className="text-gray-600 dark:text-gray-300">CodeChef Rating</div>
-              </div>
-              <div className="p-4 bg-green-100 dark:bg-green-900 rounded-lg">
-                <div className="text-3xl font-bold text-green-600 dark:text-green-300">2533</div>
-                <div className="text-gray-600 dark:text-gray-300">Global Rank</div>
-              </div>
+             
+              
+              
             </motion.div>
           </motion.div>
         </motion.div>

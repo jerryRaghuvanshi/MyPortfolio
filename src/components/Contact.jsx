@@ -24,9 +24,9 @@ const Contact = () => {
     
     try {
       // Replace these with your actual EmailJS credentials
-      const serviceID = 'service_win712t';
+      const serviceID = 'service_tmi6rv5';
       const templateID = 'template_3excrpb';
-      const publicKey = 'm6DXeoEh8tP7EC-3M';
+      const publicKey = 'zgoIq4RssloprYtTh';
       
       const response = await emailjs.send(
         serviceID,

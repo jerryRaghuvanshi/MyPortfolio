@@ -11,27 +11,27 @@ const Education = () => {
       institution: "U.I.E.T CSJMU University, Kanpur",
       duration: "2023 - 2027",
       description: "",
-      score: "Current CGPI: 10.0",
+      score: "Current CGPI: 6.0",
       color: "bg-indigo-50 dark:bg-gray-800",
       borderColor: "border-indigo-500"
     },
     higherSecondary: {
       id: 2,
       degree: "Higher Secondary Education",
-      institution: "Diamond Public School, Lucknow",
+      institution: "KSI College patholi, Agra",
       duration: "2021 - 2022",
       description: "",
-      score: "Percentage: 90.4%",
+      score: "Percentage: 72.3%",
       color: "bg-blue-50 dark:bg-gray-800",
       borderColor: "border-blue-500"
     },
     highSchool: {
       id: 3,
       degree: "High School Education",
-      institution: "Bakshi Memorial Public School, Lalganj",
+      institution: "Manglik siksha kendra fatehbad Road, Agra",
       duration: "2019 - 2020",
       description: "",
-      score: "Percentage: 91%",
+      score: "Percentage: 86.4%",
       color: "bg-teal-50 dark:bg-gray-800",
       borderColor: "border-teal-500"
     }

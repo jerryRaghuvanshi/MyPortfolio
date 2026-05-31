@@ -36,7 +36,7 @@ const Header = () => {
               alt="Logo" 
               className="h-15 w-15"
             /> */}
-            Govind Trivedi
+            Jay Singh
           </motion.div>
           
           {/* Desktop Navigation */}

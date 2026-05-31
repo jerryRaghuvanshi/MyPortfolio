@@ -14,7 +14,7 @@ const Experience = () => {
       company: "",
       duration: "",
       description: "",
-      skills: ["React", "Javascript", "C++", "Node.js"],
+      skills: ["React", "Javascript", "Java", "Spring boot"],
       color: "bg-gradient-to-br from-blue-600 to-indigo-700"
     },
     {
@@ -23,7 +23,7 @@ const Experience = () => {
       company: "",
       duration: "",
       description: "",
-      skills: ["React", "Javascript", "C++", "Node.js"],
+      skills: ["React", "Javascript", "Java", "Spring boot"],
       color: "bg-gradient-to-br from-teal-600 to-emerald-700"
     },
     {
@@ -32,7 +32,7 @@ const Experience = () => {
       company: "",
       duration: "",
       description: "",
-      skills: ["React", "Javascript", "C++", "Node.js"],
+      skills: ["React", "Javascript", "Java", "Spring boot"],
       color: "bg-gradient-to-br from-purple-600 to-violet-700"
     }
   ];

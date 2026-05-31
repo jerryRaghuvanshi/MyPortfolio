@@ -6,41 +6,28 @@ const Projects = () => {
     {
       id: 1,
       title: "Todo App",
-      description: "A basic todo application with createTodo, deleteTodo, getTodo and updateTodo features",
-      tags: ["express.js", "Node.js", "MongoDB","Postman"],
-      githubLink: "https://github.com/dryeyezzzz17/Todo-app",
+      description: 
+"Spring Boot Todo Application built while following the in28minutes course. This project demonstrates a complete backend using Spring Boot, Spring MVC, JSP, and MySQL with features like user authentication, CRUD operations, and MVC architecture.",
+      tags: ["Spring Boot", "Spring MVC", "JSP", "MySQL"],
+      githubLink: "https://github.com/jerryRaghuvanshi/Todo-Appp",
       accentColor: "from-purple-500 to-indigo-600"
     },
+   
     {
       id: 2,
-      title: "Weather App",
-      description: "A real-time weather app that lets users Search weather by city name View current weather (temperature, humidity, wind speed)",
-      tags: ["HTML", "CSS", "Javascript","OpenWeatherMap API"],
-      githubLink: "https://github.com/dryeyezzzz17/weatherApp",
-      accentColor: "from-blue-500 to-teal-400"
-    },
-    {
-      id: 3,
       title: "Study Website",
       description: "A responsive study website built with React using a Single Page Application (SPA) approach. It features user authentication with login/signup and protected dashboard routes for a seamless learning experience.",
       tags: ["React", "SPA", "Tailwind CSS","Routes"],
-      githubLink: "https://github.com/dryeyezzzz17/study_app",
+      githubLink: "https://github.com/jerryRaghuvanshi/StudySync",
       accentColor: "from-amber-500 to-pink-500"
     },
+    
     {
-      id: 4,
-      title: "Gifs Generator",
-      description: "A GIF Generator app with two sections: one shows a random GIF on button click, and the other lets users search GIFs using a search box. Built with React and custom hooks for cleaner logic.",
-      tags: ["React", "API", "Tailwind CSS","Custom hook"],
-      githubLink: "https://github.com/dryeyezzzz17/Gifs_generator",
-      accentColor: "from-emerald-400 to-cyan-500"
-    },
-    {
-      id: 5,
-      title: "Basic DemoShop",
+      id: 3,
+      title: "shopping App",
       description: "DemoShop is a static frontend demo of an e-commerce site featuring a hero section, navigation bar, search box, cart icon, and footer. Designed for layout showcase without functional features.",
       tags: ["React", "Tailwind CSS"],
-      githubLink: "https://github.com/dryeyezzzz17/demoShop",
+      githubLink: "https://github.com/jerryRaghuvanshi/shopping-App",
       accentColor: "from-violet-500 to-fuchsia-500"
     }
   ];

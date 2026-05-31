@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import logo from '/assets/image.png';
+import logo from '/assets/myImg.jpeg';
+
 
 const About = () => {
   return (
@@ -31,7 +32,7 @@ const About = () => {
                 whileHover={{ scale: 1.05 }}
                 className="text-indigo-600 dark:text-indigo-400 inline-block"
               >
-                Govind Trievdi
+                Jay Singh
               </motion.span>
             </motion.h1>
             
@@ -50,7 +51,7 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap gap-4 mb-12"
             >
-              {['C++ Programmer', 'DSA Enthusiast', 'Web Developer', 'Problem Solver'].map((item) => (
+              {['Java Programmer', 'DSA Enthusiast', 'Web Developer', 'Problem Solver'].map((item) => (
                 <motion.span
                   key={item}
                   initial={{ scale: 0.9 }}
@@ -61,7 +62,7 @@ const About = () => {
                   }}
                   transition={{ 
                     duration: 0.3,
-                    delay: 0.5 + 0.1 * ['C++ Programmer', 'DSA Enthusiast', 'Web Developer', 'Problem Solver'].indexOf(item)
+                    delay: 0.5 + 0.1 * ['Java Programmer', 'DSA Enthusiast', 'Web Developer', 'Problem Solver'].indexOf(item)
                   }}
                   className="px-4 py-2 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded-full text-sm font-medium cursor-pointer"
                 >
@@ -82,7 +83,7 @@ const About = () => {
               <br />
               <br />
               <p>
-                My technical toolkit includes C++ for competitive programming, JavaScript/React for frontend development, and Node.js for backend solutions. I'm constantly learning and applying new technologies to build efficient and scalable systems.
+                My technical toolkit includes java for programming, JavaScript/React for frontend development, and Spring/Spring boot for backend solutions. I'm constantly learning and applying new technologies to build efficient and scalable systems.
               </p>
             </motion.div>
           </motion.div>
@@ -109,7 +110,7 @@ const About = () => {
                 <div className="aspect-w-5 aspect-h-6 w-full">
                   <img 
                     src={logo} 
-                    alt="Govind Trievdi"
+                    alt="Jay Singh"
                     className="w-full h-full object-cover"
                   />
                 </div>

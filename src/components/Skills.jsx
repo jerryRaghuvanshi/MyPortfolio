@@ -7,22 +7,22 @@ const Skills = () => {
   const skills = [
     { 
       category: "Frontend", 
-      items: ["React", "JavaScript", "HTML5", "Tailwind", "Next.js"], 
+      items: ["React", "JavaScript", "HTML5", "Tailwind", "XML"], 
       icon: "💻"
     },
     { 
       category: "Backend", 
-      items: ["Node.js", "Express", "MongoDB"], 
+      items: ["Spring", "Spring Boot", "MySQL", "Firebase"], 
       icon: "⚙️"
     },
     { 
       category: "Programming", 
-      items: ["C++", "DSA", "Algorithms", "Competitive", "Problem Solving"], 
+      items: ["Java", "DSA", "Algorithms", "Competitive", "Problem Solving"], 
       icon: "🧠"
     },
     { 
       category: "Tools", 
-      items: ["Git", "VS Code", "Figma", "Postman"], 
+      items: ["Git", "VS Code", "Android Studio", "Postman"], 
       icon: "🛠️"
     }
   ];
