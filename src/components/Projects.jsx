@@ -5,30 +5,36 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Todo App",
-      description: 
-"Spring Boot Todo Application built while following the in28minutes course. This project demonstrates a complete backend using Spring Boot, Spring MVC, JSP, and MySQL with features like user authentication, CRUD operations, and MVC architecture.",
-      tags: ["Spring Boot", "Spring MVC", "JSP", "MySQL"],
-      githubLink: "https://github.com/jerryRaghuvanshi/Todo-Appp",
-      accentColor: "from-purple-500 to-indigo-600"
+      title: "Strangle — Real-Time Voice/Video Discovery",
+      description: "A production social discovery platform featuring voice-first matchmaking, mutual video consent, verified campus pools, and WebRTC media streaming.",
+      tags: ["Java 21", "Spring Boot", "WebRTC", "Redis", "RabbitMQ", "AWS EC2"],
+      githubLink: "https://github.com/jerryRaghuvanshi/strangle-showcase",
+      liveLink: "https://strangle.in",
+      accentColor: "from-cyan-600 via-blue-600 to-indigo-700"
     },
-   
     {
       id: 2,
-      title: "Study Website",
-      description: "A responsive study website built with React using a Single Page Application (SPA) approach. It features user authentication with login/signup and protected dashboard routes for a seamless learning experience.",
-      tags: ["React", "SPA", "Tailwind CSS","Routes"],
-      githubLink: "https://github.com/jerryRaghuvanshi/StudySync",
-      accentColor: "from-amber-500 to-pink-500"
+      title: "Amazon-Inspired E-Commerce Backend",
+      description: "A containerized Spring Boot backend with Elasticsearch full-text search, Redis caching, MySQL indexing, Stripe payments, and JWT security.",
+      tags: ["Spring Boot", "MySQL", "Redis", "Docker", "Elasticsearch"],
+      githubLink: "https://github.com/jerryRaghuvanshi/Amazon-Backend",
+      accentColor: "from-amber-500 via-orange-600 to-red-600"
     },
-    
     {
       id: 3,
-      title: "shopping App",
-      description: "DemoShop is a static frontend demo of an e-commerce site featuring a hero section, navigation bar, search box, cart icon, and footer. Designed for layout showcase without functional features.",
-      tags: ["React", "Tailwind CSS"],
-      githubLink: "https://github.com/jerryRaghuvanshi/shopping-App",
-      accentColor: "from-violet-500 to-fuchsia-500"
+      title: "Enterprise Expense Tracker",
+      description: "Full-stack personal finance application with dynamic analytics, target tracking, CSV exports, Google OAuth2, and Spring Data JPA.",
+      tags: ["Spring Boot", "React", "JWT", "MySQL", "Tailwind CSS"],
+      githubLink: "https://github.com/jerryRaghuvanshi/expense-tracker",
+      accentColor: "from-emerald-500 to-teal-700"
+    },
+    {
+      id: 4,
+      title: "Task Manager REST API",
+      description: "Secure REST API built with Spring Security, JWT, ownership-based authorization, MapStruct DTOs, and Swagger/OpenAPI documentation.",
+      tags: ["Spring Boot", "Spring Security", "JWT", "MySQL", "Swagger"],
+      githubLink: "https://github.com/jerryRaghuvanshi/Task-Manager-API",
+      accentColor: "from-purple-500 to-indigo-600"
     }
   ];
 
@@ -126,22 +132,42 @@ const Projects = () => {
                         ))}
                       </div>
                       
-                      <motion.a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-white hover:text-white/80 transition-colors"
-                        initial={{ y: 10, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.6 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        View on GitHub
-                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </motion.a>
+                      <div className="flex items-center gap-4">
+                        {project.liveLink && (
+                          <motion.a
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center px-3 py-1.5 rounded-lg bg-white text-gray-900 font-semibold text-xs shadow-md hover:bg-gray-100 transition-all"
+                            initial={{ y: 10, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            Live Platform
+                            <svg className="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </motion.a>
+                        )}
+                        <motion.a
+                          href={project.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-white hover:text-white/80 transition-colors text-xs font-medium"
+                          initial={{ y: 10, opacity: 0 }}
+                          whileInView={{ y: 0, opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.6 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          {project.liveLink ? "Case Study" : "View on GitHub"}
+                          <svg className="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </motion.a>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
