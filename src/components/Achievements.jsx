@@ -1,128 +1,190 @@
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
+import { FiAward, FiExternalLink, FiCheckCircle, FiTrendingUp } from 'react-icons/fi';
+import { SiLeetcode, SiCodechef } from 'react-icons/si';
 
 const Achievements = () => {
-  const constraintsRef = useRef(null);
-
-  const achievements = [
-    "Solved more than 400 problems on platforms such as LeetCode and GFG",
-    "Consistent participant in contests and coding challenges",
-    "Good understanding of algorithms such as sorting, searching, recursion, tree, linked list, stack and queue",
-    "Proficient in Java programming language",
-    "Strong problem-solving skills and ability to optimize solutions",
-    "Runner up in college tech quiz competition 2023",
-  ];
-
-  // Background circle data
-  const circles = [
-    { size: 200, x: -50, y: -50, delay: 0.2 },
-    { size: 300, x: 100, y: 100, delay: 0.4 },
-    { size: 150, x: -100, y: 150, delay: 0.6 },
-    { size: 250, x: 200, y: -50, delay: 0.8 }
+  const certificationsAndMilestones = [
+    {
+      id: "tcs-nqt",
+      title: "TCS iON NQT - IT Examination",
+      issuer: "Tata Consultancy Services (TCS iON)",
+      score: "81.22% Overall",
+      date: "2026",
+      featured: true,
+      breakdown: [
+        { label: "Overall Score", value: "81.22%" },
+        { label: "Cognitive Score", value: "83.60%" },
+        { label: "Java Programming", value: "82.39%" }
+      ],
+      description: "Demonstrated national-level proficiency in advanced Java programming, logical problem solving, algorithmic reasoning, and quantitative aptitude."
+    },
+    {
+      id: "leetcode",
+      title: "450+ Algorithmic Problems Solved",
+      issuer: "LeetCode",
+      score: "450+ Problems",
+      profileUrl: "https://leetcode.com/u/JayRaghuvanshi/",
+      date: "Ongoing",
+      featured: true,
+      breakdown: [
+        { label: "Total Solved", value: "450+" },
+        { label: "Core Topics", value: "DP, Graphs, Trees, Heaps" },
+        { label: "Language", value: "Java 21" }
+      ],
+      description: "Consistent problem solver tackling complex algorithmic paradigms: dynamic programming, graph traversal, greedy techniques, sliding windows, and binary search trees."
+    },
+    {
+      id: "quiz-runner-up",
+      title: "Tech Quiz Competition Runner-Up",
+      issuer: "College Tech Fest",
+      score: "2nd Place",
+      date: "2023",
+      featured: false,
+      breakdown: [
+        { label: "Event", value: "Annual Tech Fest" },
+        { label: "Domain", value: "CS Fundamentals & Tech" }
+      ],
+      description: "Achieved Runner-Up position in an intensive multi-round technical quiz covering operating systems, DBMS, data structures, and computer networking."
+    },
+    {
+      id: "codechef",
+      title: "Active Competitive Programming Contender",
+      issuer: "CodeChef",
+      score: "Contest Rating",
+      profileUrl: "https://www.codechef.com/users/jayraghuvansh1",
+      date: "Ongoing",
+      featured: false,
+      breakdown: [
+        { label: "Platform", value: "CodeChef" },
+        { label: "Handle", value: "jayraghuvansh1" }
+      ],
+      description: "Regularly competing in rated programming rounds, analyzing competitive optimization techniques, and crafting time- and space-efficient algorithms."
+    }
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 px-6 py-20">
-      {/* Background circles */}
-      <div className="absolute inset-0 overflow-hidden" ref={constraintsRef}>
-        {circles.map((circle, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: circle.x, y: circle.y }}
-            animate={{ 
-              opacity: 0.1,
-              x: [circle.x, circle.x + 50, circle.x],
-              y: [circle.y, circle.y + 50, circle.y]
-            }}
-            transition={{
-              delay: circle.delay,
-              duration: 10 + index * 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className={`absolute rounded-full bg-indigo-400 dark:bg-indigo-600`}
-            style={{
-              width: circle.size,
-              height: circle.size,
-              filter: "blur(60px)"
-            }}
-          />
-        ))}
-      </div>
+    <section className="min-h-screen py-16 md:py-24 bg-slate-50/50 dark:bg-slate-900/50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 dark:bg-slate-800 border border-indigo-200 dark:border-slate-700 text-xs font-semibold text-indigo-600 dark:text-cyan-400 mb-4">
+            <FiAward className="w-3.5 h-3.5" />
+            <span>Honors &amp; Verified Results</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+            Certifications &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-400 to-cyan-400">Achievements</span>
+          </h2>
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
+            Validated technical assessment scores, competitive programming problem solving, and honors.
+          </p>
+        </div>
 
-      <div className="relative container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto"
-        >
-          <motion.h2 
-            className="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-white"
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            My <span className="text-indigo-600 dark:text-indigo-400">Achievements</span>
-          </motion.h2>
-          
-          <motion.div 
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 backdrop-blur-sm bg-opacity-70 dark:bg-opacity-70"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            whileHover={{ scale: 1.01 }}
-          >
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {achievements.map((achievement, index) => (
-                <motion.li 
-                  key={index}
-                  className="flex items-start p-4 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-indigo-50 dark:hover:bg-gray-600 transition-colors duration-300"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <span className="flex-shrink-0 mt-1 mr-3">
-                    <motion.svg 
-                      className="w-6 h-6 text-indigo-600 dark:text-indigo-400" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.5 + (index * 0.1) }}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </motion.svg>
-                  </span>
-                  <span className="text-gray-700 dark:text-gray-200">{achievement}</span>
-                </motion.li>
-              ))}
-            </ul>
-
-            {/* Stats section */}
-            <motion.div 
-              className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+        {/* Featured Achievements Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {certificationsAndMilestones.map((item, idx) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.45, delay: idx * 0.1 }}
+              whileHover={{ y: -4 }}
+              className={`rounded-3xl p-6 sm:p-8 transition-all duration-300 border flex flex-col justify-between ${
+                item.featured
+                  ? 'bg-gradient-to-br from-white to-indigo-50/30 dark:from-slate-800 dark:to-slate-900 border-indigo-200/80 dark:border-indigo-500/40 shadow-lg dark:shadow-indigo-950/40'
+                  : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700/80 shadow-sm'
+              }`}
             >
-              <div className="p-4 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
-                <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-300">400+</div>
-                <div className="text-gray-600 dark:text-gray-300">Problems Solved</div>
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="p-2.5 rounded-xl bg-indigo-50 dark:bg-slate-700 text-indigo-600 dark:text-cyan-400">
+                      {item.id === 'leetcode' ? (
+                        <SiLeetcode className="w-5 h-5 text-amber-500" />
+                      ) : item.id === 'codechef' ? (
+                        <SiCodechef className="w-5 h-5 text-orange-500" />
+                      ) : (
+                        <FiAward className="w-5 h-5" />
+                      )}
+                    </div>
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                      {item.issuer}
+                    </span>
+                  </div>
+
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
+                    {item.score}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                  {item.title}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                  {item.description}
+                </p>
+
+                {/* Score breakdown metrics */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-6">
+                  {item.breakdown.map((stat, sIdx) => (
+                    <div
+                      key={sIdx}
+                      className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200/60 dark:border-slate-700/40"
+                    >
+                      <span className="block text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                        {stat.label}
+                      </span>
+                      <span className="block text-xs sm:text-sm font-bold text-slate-900 dark:text-white mt-0.5">
+                        {stat.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-             
-              
-              
+
+              {/* Action Link if present */}
+              {item.profileUrl && (
+                <a
+                  href={item.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-slate-700/70 dark:hover:bg-slate-700 text-indigo-600 dark:text-cyan-400 font-semibold text-xs transition-colors"
+                >
+                  <span>Verify Public Profile</span>
+                  <FiExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
             </motion.div>
-          </motion.div>
-        </motion.div>
+          ))}
+        </div>
+
+        {/* Highlight Summary Banner */}
+        <div className="rounded-2xl p-6 bg-gradient-to-r from-indigo-900 via-indigo-950 to-slate-900 text-white border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="flex items-center gap-4">
+            <div className="p-3 rounded-2xl bg-indigo-500/20 text-cyan-400 border border-indigo-400/30">
+              <FiTrendingUp className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-white">450+ LeetCode Algorithms &amp; TCS iON Certified</h4>
+              <p className="text-xs sm:text-sm text-slate-300">
+                Consistently refining competitive coding abilities and distributed system scalability.
+              </p>
+            </div>
+          </div>
+
+          <a
+            href="https://leetcode.com/u/JayRaghuvanshi/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs shadow-md transition-all whitespace-nowrap"
+          >
+            <span>Visit LeetCode Profile</span>
+            <FiExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
       </div>
     </section>
   );

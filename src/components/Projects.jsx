@@ -1,195 +1,327 @@
-import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { FiExternalLink, FiGithub, FiCheckCircle, FiServer, FiLayers, FiShield, FiCpu, FiRadio } from 'react-icons/fi';
+import { SiSpringboot, SiRedis, SiRabbitmq, SiDocker, SiPostgresql, SiMysql, SiReact, SiStripe } from 'react-icons/si';
 
 const Projects = () => {
-  const projects = [
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const flagshipProject = {
+    title: "Strangle – Real-Time Voice/Video Platform",
+    subtitle: "Production Distributed Social Discovery Platform",
+    status: "Live in Production",
+    liveUrl: "https://strangle.in",
+    githubUrl: "https://github.com/jerryRaghuvanshi/strangle-showcase",
+    techStack: [
+      { name: "Java 21", icon: <FiServer /> },
+      { name: "Spring Boot 3", icon: <SiSpringboot /> },
+      { name: "WebRTC", icon: <FiRadio /> },
+      { name: "Redis", icon: <SiRedis /> },
+      { name: "RabbitMQ", icon: <SiRabbitmq /> },
+      { name: "PostgreSQL", icon: <SiPostgresql /> },
+      { name: "AWS EC2", icon: <FiCpu /> },
+      { name: "Docker", icon: <SiDocker /> },
+      { name: "Coturn STUN/TURN", icon: <FiServer /> },
+      { name: "Caddy TLS", icon: <FiShield /> }
+    ],
+    highlights: [
+      "Architected a high-concurrency matchmaking engine using Java 21, Spring Boot, and Redis (Lua scripts, Sorted Sets), achieving atomic queue pairing, verified campus domain isolation, and sub-second successive partner discovery without race conditions.",
+      "Engineered end-to-end WebRTC audio/video calling with cross-platform interoperability across Next.js (Web) and native Android, utilizing WebSockets (STOMP) for SDP/trickle ICE signaling, Coturn (STUN/TURN) for NAT traversal, and a mutual two-way video consent handshake.",
+      "Built an asynchronous, event-driven messaging layer with RabbitMQ and PostgreSQL, integrating MinIO (S3-compatible) presigned URLs for media transfers and automated Spring cron workers for zero-leak ephemeral data shredding and media lifecycle cleanup.",
+      "Integrated a decoupled Python (FastAPI) Trust & Safety microservice via RabbitMQ/REST to perform automated toxicity and NSFW media moderation, pairing with real-time user reporting and distributed strike enforcement.",
+      "Containerized and deployed the distributed system on AWS EC2 using Docker Compose, Caddy (reverse proxy with automated Let's Encrypt TLS/WebSocket tunneling), and a multi-stage GitHub Actions CI/CD pipeline featuring automated smoke tests and selective zero-downtime rebuilds."
+    ]
+  };
+
+  const otherProjects = [
     {
-      id: 1,
-      title: "Strangle — Real-Time Voice/Video Discovery",
-      description: "A production social discovery platform featuring voice-first matchmaking, mutual video consent, verified campus pools, and WebRTC media streaming.",
-      tags: ["Java 21", "Spring Boot", "WebRTC", "Redis", "RabbitMQ", "AWS EC2"],
-      githubLink: "https://github.com/jerryRaghuvanshi/strangle-showcase",
-      liveLink: "https://strangle.in",
-      accentColor: "from-cyan-600 via-blue-600 to-indigo-700"
-    },
-    {
-      id: 2,
+      id: "amazon-backend",
       title: "Amazon-Inspired E-Commerce Backend",
-      description: "A containerized Spring Boot backend with Elasticsearch full-text search, Redis caching, MySQL indexing, Stripe payments, and JWT security.",
-      tags: ["Spring Boot", "MySQL", "Redis", "Docker", "Elasticsearch"],
-      githubLink: "https://github.com/jerryRaghuvanshi/Amazon-Backend",
-      accentColor: "from-amber-500 via-orange-600 to-red-600"
+      category: "backend",
+      description: "High-performance Spring Boot microservice backend powering full-cycle e-commerce operations, secure payment processing, and inventory control.",
+      githubUrl: "https://github.com/jerryRaghuvanshi/Amazon-Backend",
+      tags: ["Spring Boot", "MySQL", "Redis", "Docker", "Stripe", "JWT", "Spring Security"],
+      bullets: [
+        "Architected complete backend covering product catalog, inventory locking, cart persistence, wishlist, and order-management workflows.",
+        "Implemented stateless JWT-based authentication and granular role-based authorization (RBAC) using Spring Security.",
+        "Integrated Stripe Payment Intents API and webhook listeners for reliable asynchronous checkout and payment verification.",
+        "Applied Redis caching for frequently accessed catalogs and optimized SQL indexing, bundled via Docker Compose."
+      ]
     },
     {
-      id: 3,
-      title: "Enterprise Expense Tracker",
-      description: "Full-stack personal finance application with dynamic analytics, target tracking, CSV exports, Google OAuth2, and Spring Data JPA.",
-      tags: ["Spring Boot", "React", "JWT", "MySQL", "Tailwind CSS"],
-      githubLink: "https://github.com/jerryRaghuvanshi/expense-tracker",
-      accentColor: "from-emerald-500 to-teal-700"
+      id: "expense-tracker",
+      title: "Expense Tracker – Full-Stack Application",
+      category: "fullstack",
+      description: "Comprehensive financial management system featuring visual spending analytics, budget target tracking, and automated reports.",
+      githubUrl: "https://github.com/jerryRaghuvanshi/expense-tracker",
+      tags: ["Spring Boot", "React", "JWT", "Google OAuth 2.0", "MySQL", "Swagger"],
+      bullets: [
+        "Built full-stack personal finance application with dual JWT authentication and Google OAuth 2.0 SSO.",
+        "Structured layered Controller-Service-Repository architecture using Spring Data JPA, MapStruct DTOs, and request validation.",
+        "Implemented real-time expense category analytics, CSV data export, global exception handling, and OpenAPI/Swagger documentation."
+      ]
     },
     {
-      id: 4,
+      id: "task-manager-api",
       title: "Task Manager REST API",
-      description: "Secure REST API built with Spring Security, JWT, ownership-based authorization, MapStruct DTOs, and Swagger/OpenAPI documentation.",
-      tags: ["Spring Boot", "Spring Security", "JWT", "MySQL", "Swagger"],
-      githubLink: "https://github.com/jerryRaghuvanshi/Task-Manager-API",
-      accentColor: "from-purple-500 to-indigo-600"
+      category: "backend",
+      description: "Production-ready task management REST API designed with rigorous security standards, audit trails, and Swagger documentation.",
+      githubUrl: "https://github.com/jerryRaghuvanshi/Task-Manager-API",
+      tags: ["Spring Boot", "Spring Security", "JWT", "MySQL", "OpenAPI / Swagger"],
+      bullets: [
+        "Implemented secure RESTful endpoints with ownership-based authorization ensuring zero tenant data leakage.",
+        "Designed clean entity-DTO mappings with MapStruct and comprehensive input validation.",
+        "Configured interactive OpenAPI 3.0 / Swagger documentation with live sandbox testing."
+      ]
     }
   ];
 
-  const [isHovered, setIsHovered] = useState(false);
-  const controls = useAnimation();
-  const duplicatedProjects = [...projects, ...projects]; // For seamless looping
-
-  useEffect(() => {
-    if (!isHovered) {
-      controls.start({
-        x: ['0%', '-100%'],
-        transition: {
-          duration: 40,
-          ease: "linear",
-          repeat: Infinity,
-          repeatType: "loop"
-        }
-      });
-    }
-  }, [controls, isHovered]);
+  const filteredProjects = activeFilter === 'all'
+    ? otherProjects
+    : otherProjects.filter(p => p.category === activeFilter);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 text-gray-800 dark:text-white">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600">Projects</span>
+    <section className="min-h-screen py-16 md:py-24 bg-slate-50/50 dark:bg-slate-900/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-50 dark:bg-slate-800 border border-indigo-200 dark:border-slate-700 text-xs font-semibold text-indigo-600 dark:text-cyan-400 mb-4">
+            <FiLayers className="w-3.5 h-3.5" />
+            <span>Featured Engineering Work</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+            Projects &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-400 to-cyan-400">Systems</span>
           </h2>
-          
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
+            From production-grade distributed WebRTC signaling engines to high-throughput e-commerce microservices and secure REST APIs.
+          </p>
+        </div>
+
+        {/* 1. FLAGSHIP PROJECT SHOWCASE (Strangle) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative mb-20 rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white border border-indigo-500/30 shadow-2xl shadow-indigo-950/50"
+        >
+          {/* Ambient background decoration */}
+          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative p-6 sm:p-10 lg:p-12 z-10">
+            {/* Header row */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-6 border-b border-indigo-500/20">
+              <div>
+                <div className="flex flex-wrap items-center gap-3 mb-2">
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider border border-cyan-500/40 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+                    Flagship Project
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30">
+                    {flagshipProject.status}
+                  </span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+                  {flagshipProject.title}
+                </h3>
+                <p className="text-sm sm:text-base text-slate-300 font-medium mt-1">
+                  {flagshipProject.subtitle}
+                </p>
+              </div>
+
+              {/* Action Buttons for Strangle */}
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={flagshipProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <FiExternalLink className="w-4 h-4" />
+                  <span>Visit Strangle.in</span>
+                </a>
+                <a
+                  href={flagshipProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-semibold text-sm border border-slate-700 transition-all hover:scale-[1.02]"
+                >
+                  <FiGithub className="w-4 h-4" />
+                  <span>Architecture &amp; Code</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Tech Stack Pills */}
+            <div className="mb-8">
+              <span className="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">
+                Technology Stack &amp; Infrastructure
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {flagshipProject.techStack.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/80 text-xs font-medium text-slate-200"
+                  >
+                    <span className="text-cyan-400">{tech.icon}</span>
+                    <span>{tech.name}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Architecture Highlights Bullets */}
+            <div>
+              <span className="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-4">
+                Key Engineering &amp; Architectural Accomplishments
+              </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {flagshipProject.highlights.map((bullet, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-3 p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 hover:border-indigo-500/40 transition-colors"
+                  >
+                    <FiCheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                      {bullet}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="relative h-[420px] w-full overflow-x-visible">
-          <motion.div
-            className="absolute flex gap-8"
-            animate={controls}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {duplicatedProjects.map((project, index) => (
-              <motion.div
-                key={`${project.id}-${index}`}
-                className="w-[400px] h-[320px] flex-shrink-0 relative"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <motion.div
-                  className={`absolute inset-0 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br ${project.accentColor}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="absolute inset-0 bg-black/20 backdrop-blur-sm p-8 flex flex-col justify-between">
-                    <div>
-                      <motion.h3 
-                        className="text-2xl font-bold text-white mb-3"
-                        initial={{ y: 10, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        {project.title}
-                      </motion.h3>
-                      <motion.p 
-                        className="text-gray-200 mb-6"
-                        initial={{ y: 10, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                      >
-                        {project.description}
-                      </motion.p>
-                    </div>
-                    
-                    <div>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tags.map((tag, i) => (
-                          <motion.span
-                            key={tag}
-                            className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-xs"
-                            initial={{ y: 10, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4 + i * 0.1 }}
-                          >
-                            {tag}
-                          </motion.span>
-                        ))}
-                      </div>
-                      
-                      <div className="flex items-center gap-4">
-                        {project.liveLink && (
-                          <motion.a
-                            href={project.liveLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center px-3 py-1.5 rounded-lg bg-white text-gray-900 font-semibold text-xs shadow-md hover:bg-gray-100 transition-all"
-                            initial={{ y: 10, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            Live Platform
-                            <svg className="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          </motion.a>
-                        )}
-                        <motion.a
-                          href={project.githubLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-white hover:text-white/80 transition-colors text-xs font-medium"
-                          initial={{ y: 10, opacity: 0 }}
-                          whileInView={{ y: 0, opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.6 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          {project.liveLink ? "Case Study" : "View on GitHub"}
-                          <svg className="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </motion.a>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
+        {/* 2. OTHER PROJECTS SECTION */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+            Backend &amp; Full-Stack Implementations
+          </h3>
+
+          {/* Filter Pills */}
+          <div className="flex items-center gap-2 p-1 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs">
+            <button
+              onClick={() => setActiveFilter('all')}
+              className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
+                activeFilter === 'all'
+                  ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-cyan-400 shadow-sm font-semibold'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              All Projects
+            </button>
+            <button
+              onClick={() => setActiveFilter('backend')}
+              className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
+                activeFilter === 'backend'
+                  ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-cyan-400 shadow-sm font-semibold'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              Backend / APIs
+            </button>
+            <button
+              onClick={() => setActiveFilter('fullstack')}
+              className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
+                activeFilter === 'fullstack'
+                  ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-cyan-400 shadow-sm font-semibold'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              Full Stack
+            </button>
+          </div>
         </div>
 
-        <div className="flex justify-center mt-16">
-          <motion.a
-            href="#"
-            className="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-medium shadow-lg"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.4)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            View All Projects
-          </motion.a>
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ y: -4 }}
+              className="flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 p-6 shadow-sm hover:shadow-xl dark:hover:shadow-indigo-950/50 hover:border-indigo-400 dark:hover:border-indigo-500/60 transition-all duration-300"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 uppercase tracking-wider">
+                    {project.category}
+                  </span>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white p-1 transition-colors"
+                    aria-label={`View ${project.title} on GitHub`}
+                  >
+                    <FiGithub className="w-5 h-5" />
+                  </a>
+                </div>
+
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+                  {project.title}
+                </h4>
+
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Bullets */}
+                <ul className="space-y-2 mb-6">
+                  {project.bullets.map((b, bIdx) => (
+                    <li key={bIdx} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-cyan-400 mt-1.5 flex-shrink-0" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100 dark:border-slate-700/60 mb-4">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-indigo-50 dark:bg-slate-700/60 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-cyan-400 font-semibold text-xs transition-colors"
+                >
+                  <FiGithub className="w-4 h-4" />
+                  <span>View Repository &amp; Source</span>
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* GitHub CTA bottom bar */}
+        <div className="mt-16 text-center">
+          <a
+            href="https://github.com/jerryRaghuvanshi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-medium text-sm shadow-md transition-all hover:scale-105"
+          >
+            <FiGithub className="w-4 h-4" />
+            <span>Explore All Repositories on GitHub @jerryRaghuvanshi</span>
+          </a>
+        </div>
+
       </div>
     </section>
   );
